@@ -3,13 +3,8 @@ import operator
 
 import numpy as np
 from sklearn import cross_validation
-from sklearn import tree
-from sklearn import naive_bayes
-from sklearn import ensemble
-from sklearn.ensemble import BaggingClassifier
-from sklearn.ensemble import AdaBoostClassifier
-from sklearn.neighbors import KNeighborsClassifier
-
+from sklearn import svm
+from sklearn import ensemble 
 # I stole this gem of a function from: http://stackoverflow.com/questions/1518522/python-most-common-element-in-a-list
 def most_common(L):
   # get an iterable of (item, iterable) pairs
@@ -53,22 +48,17 @@ data = train[:,1:]
 target = train[:,0]
 
 clfs = []
-# Through cv testing, I found optimal C to be 0.0001
-clfs.append(naive_bayes.MultinomialNB(alpha=10**-5))
-
-# Through cv testing, I found optimal depth to be 11
-clfs.append(tree.DecisionTreeClassifier(max_depth=11))
 
 # Through cv testing, I found the optimal number of estimators to be 15
-clfs.append(ensemble.RandomForestClassifier(n_estimators=40))
-
-# You know the deal, for the next two, messy testing to get hyperparameters
-clfs.append(BaggingClassifier(KNeighborsClassifier(),max_samples=0.6, max_features=0.3))
-clfs.append(AdaBoostClassifier(n_estimators=40))
+clfs.append(ensemble.ExtraTreesClassifier(n_estimators=100))
+clfs.append(ensemble.GradientBoostingClassifier(n_estimators=125))
+clfs.append(ensemble.AdaBoostClassifier(n_estimators=100))
 
 predictificate(data, target, test, clfs)
+
+
 
 # I use the following code to find good hyperparameter values
 #scores = cross_validation.cross_val_score(
     #clf, data, target, cv=5)
-#print("Accuracy: %0.2f (+/- %0.2f), %d" % (scores.mean(), scores.std() * 2, x))
+#print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
