@@ -12,9 +12,8 @@ target = train[:,0]
 
 test_data = test[:,1:]
 
-clf = ensemble.RandomForestRegressor()
-
-score = sqrt(np.mean([-x for x in cross_validation.cross_val_score(clf, data, target, scoring='mean_squared_error')]))
+clf = ensemble.RandomForestRegressor(n_estimators=150)
+score = np.mean([-x for x in cross_validation.cross_val_score(clf, data, target, scoring='mean_absolute_error')])
 
 print score
 
