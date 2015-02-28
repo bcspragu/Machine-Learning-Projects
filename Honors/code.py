@@ -8,12 +8,16 @@ from sklearn import ensemble
 from sklearn import neighbors
 from sklearn import svm
 
-train = np.load('train.npy')
+train = np.load('train.npy')[:1000]
 # Remove the labels
-test = np.load('test_distribute.npy')[:,1:]
+test = np.load('test.npy')[:1000]
 
-data = train[:,1:]
+
+train_data = train[:,1:]
 target = train[:,0]
+
+test_data = test[:,1:]
+names = test[:,0]
 
 def most_common(L):
   # get an iterable of (item, iterable) pairs
@@ -58,9 +62,13 @@ clfs.append(ensemble.AdaBoostClassifier(n_estimators=135))
 #clfs.append(neighbors.KNeighborsClassifier(n_neighbors=10))
 #clfs.append(svm.SVC())
 
-predictificate(data, target, test, clfs)
+#predictificate(data, target, test, clfs)
 
+clf = ensemble.RandomForestRegressor()
+clf.fit(train_data, target)
+probabilities = clf.predict(test_data)
+print probabilities
+#f = open('preds.csv', 'w')
+
+#f.write('image,'+ names.join(','))
 # I use the following code to find good hyperparameter values
-#scores = cross_validation.cross_val_score(
-    #clf, data, target, cv=5)
-#print("Accuracy: %0.2f (+/- %0.2f) %f" % (scores.mean(), scores.std() * 2, x))

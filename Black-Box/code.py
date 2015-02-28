@@ -19,6 +19,7 @@ test = np.load('test_distribute.npy')[:,1:]
 data = train[:,1:]
 target = train[:,0]
 
+# Take the 400 best features
 trimmer = SelectKBest(chi2, k=400).fit(data, target)
 
 trimmed_data = trimmer.transform(data)
