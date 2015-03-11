@@ -1,8 +1,8 @@
 Title: Communities and Crime
 
-Abstract: Communities within the United States. The data combines socio-economic data 
-from the 1990 US Census, law enforcement data from the 1990 US LEMAS survey, and crime 
-data from the 1995 FBI UCR.
+Abstract: The data combines socio-economic data from the 1990 US Census, 
+law enforcement data from the 1990 US LEMAS survey, and crime data from the 1995 
+FBI UCR.
 
 
 Data Set Information:
@@ -45,6 +45,7 @@ ALL MISSING VALUES HAVE BEEN IMPUTED USING MEDIAN IMPUTATION
 
 Target Information (1 target):
 The first column of data corresponds to the prediction target. 
+Total number of crimes per 100K population (numeric - decimal) 
 
 Attribute Information: (122 predictive, 5 non-predictive, 1 goal)
 -- state: US state (by number) - not counted as predictive above, but if considered, should be consided nominal (nominal)
@@ -173,7 +174,6 @@ Attribute Information: (122 predictive, 5 non-predictive, 1 goal)
 -- LemasGangUnitDeploy: gang unit deployed (numeric - decimal - but really ordinal - 0 means NO, 1 means YES, 0.5 means Part Time)
 -- LemasPctOfficDrugUn: percent of officers assigned to drug units (numeric - decimal)
 -- PolicBudgPerPop: police operating budget per population (numeric - decimal)
--- ViolentCrimesPerPop: total number of violent crimes per 100K popuation (numeric - decimal) 
 
 Distribution of the Target Variable (Violent Crimes per Population):
 Range Frequency
@@ -192,3 +192,4 @@ Range Frequency
 0.800-0.867 23
 0.867-0.933 14
 0.933-1.000 50
+
