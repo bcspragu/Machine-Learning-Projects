@@ -42,6 +42,13 @@ def split_code_name(r):
     s = r[0]
     return (s[0], s[1], r[1][0], r[1][1])
 
+def x_xtranspose(r):
+    two_dim = r[2].reshape((1,18))
+    return np.dot(two_dim.T, two_dim)
+
+def xy_scale(r):
+    return np.dot(r[2].reshape(1,18), r[3])
+
 # This one is for the server
 #base = "/wikistates/{0}.txt"
 
@@ -72,4 +79,14 @@ rdd = rdd.map(set_bias)
 # Split the project code and project name out of the tuple we used earlier
 rdd = rdd.map(split_code_name)
 
-# Final format is (project code, project name, feature vector, target value)
+xxt = rdd.map(x_xtranspose)
+
+res = xxt.reduce(np.add)
+
+# res holds the 18x18 array
+
+xy = rdd.map(xy_scale)
+
+res2 = xy.reduce(np.add)
+
+weights = np.dot(np.linalg.inv(res), res2.T)
