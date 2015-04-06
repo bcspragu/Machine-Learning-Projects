@@ -6,7 +6,8 @@ from pyspark.context import SparkContext
 
 from operator import add
 from math import sqrt
-conf = SparkConf().setAppName("BSpragueHW3").setMaster("local[2]")
+
+conf = SparkConf()
 sc = SparkContext(conf=conf)
 
 # Map the data to a tuple of (hour, (project code, page name), page views)
@@ -68,10 +69,10 @@ def squared_diff(r):
 
 t1 = time.time()
 # This one is for the server
-#base = "/wikistats/{0}.txt"
+base = "/wikistats/{0}.txt"
 
 # This one is for local testing
-base = "/home/bsprague/Downloads/HW3Data/{0}.txt"
+# base = "/home/bsprague/Downloads/HW3Data/{0}.txt"
 
 rdds = []
 for i in range(6,24):
@@ -102,6 +103,7 @@ test = rdd.filter(odd)
 
 nxxt = train.map(x_xtranspose)
 nres = nxxt.reduce(np.add)
+
 nxy = train.map(xy_scale)
 nres2 = nxy.reduce(np.add)
 
