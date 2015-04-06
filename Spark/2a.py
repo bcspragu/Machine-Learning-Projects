@@ -30,7 +30,7 @@ def to_vector(r):
     # arr[hour-6] set to page views, target value))
     # The feature vector and target value are wrapped in a tuple so they can be
     # added with one call to np.add
-    return (r[1], (n, target))
+    return (r[1], (n.reshape(18,1), target))
 
 def set_bias(r):
     # r[1] is our inner tuple, r[1][0] is the feature vector, r[1][0][0] is the
@@ -43,7 +43,7 @@ def split_code_name(r):
     return (s[0], s[1], r[1][0], r[1][1])
 
 # This one is for the server
-#base = "/wikistates/{0}.txt"
+#base = "/wikistats/{0}.txt"
 
 # This one is for local testing
 base = "/home/bsprague/Downloads/HW3Data/{0}.txt"

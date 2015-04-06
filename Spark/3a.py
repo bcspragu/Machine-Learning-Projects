@@ -1,6 +1,6 @@
 def x_xtranspose(r):
-    two_dim = r[2].reshape(1,18)
-    return np.dot(two_dim.T, two_dim)
+    two_dim = r[2]
+    return np.dot(two_dim, two_dim.T)
 
 xxt = rdd.map(x_xtranspose)
 

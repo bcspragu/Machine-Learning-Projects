@@ -66,7 +66,7 @@ def squared_diff(r):
     return (r[2]-r[3])**2
 
 # This one is for the server
-#base = "/wikistates/{0}.txt"
+#base = "/wikistats/{0}.txt"
 
 # This one is for local testing
 base = "/home/bsprague/Downloads/HW3Data/{0}.txt"
