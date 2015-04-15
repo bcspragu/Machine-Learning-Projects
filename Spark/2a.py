@@ -3,7 +3,7 @@ import numpy as np
 from pyspark.conf import SparkConf
 from pyspark.context import SparkContext
 
-conf = SparkConf().setAppName("BSpragueHW3").setMaster("local[2]")
+conf = SparkConf().setAppName("HW3").setMaster("local[2]")
 sc = SparkContext(conf=conf)
 
 # Map the data to a tuple of (hour, (project code, page name), page views)
@@ -46,7 +46,7 @@ def split_code_name(r):
 #base = "/wikistats/{0}.txt"
 
 # This one is for local testing
-base = "/home/bsprague/Downloads/HW3Data/{0}.txt"
+base = "~/HW3Data/{0}.txt"
 
 rdds = []
 for i in range(6,24):
