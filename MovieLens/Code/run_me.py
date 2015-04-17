@@ -46,6 +46,6 @@ model.fit(Xtrain)
 clusters = model.cluster(Xtrain)
 resAge = [[],[],[]]
 for i, x in enumerate(clusters):
-    resAge[int(x)].append(Users[i][1])
+    resAge[int(x)].append(Users[i][3])
 
 print(resAge)
